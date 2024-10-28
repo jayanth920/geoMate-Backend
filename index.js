@@ -83,8 +83,8 @@ app.post("/location", async (req, res) => {
 });
 
 app.get("/locations", (req, res) => {
-    const latestLocations = [...locations].reverse(); 
-    res.json(latestLocations);
+    // const latestLocations = [...locations].reverse(); 
+    res.json(locations);
 });
 
 app.listen(PORT, () => {
