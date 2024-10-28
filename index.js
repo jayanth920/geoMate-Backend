@@ -28,7 +28,9 @@ async function getCityCountry(latitude, longitude) {
         country: address.country || "unknown",
         state: address.state || "unknown state",
         state_district: address.state_district || "unknown state_district",
-        village: address.village || "unknown village"
+        village: address.village || "unknown village",
+        latitude,
+        longitude
     }
 
     return obj;
