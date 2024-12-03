@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Geoguessr Location Resolver (Works in all modes)
+// @name         New Userscript
 // @namespace    http://tampermonkey.net/
-// @version      12.4
-// @description  Features: Automatically score 5000 Points | Score randomly between 4500 and 5000 points | Open in Google Maps
-// @author       0x978
+// @version      2024-10-28
+// @description  try to take over the world!
+// @author       You
 // @match        https://www.geoguessr.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=geoguessr.com
 // @grant        GM_webRequest
@@ -233,7 +233,7 @@ function sendCoordinatesToAPI() {
         return;
     }
 
-    fetch('https://your-backend-url.com/location', {
+    fetch('https://geomate-backend.onrender.com/location', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ latitude: lat, longitude: lng }),
@@ -244,7 +244,7 @@ function sendCoordinatesToAPI() {
 }
 
 // ==================================== Controls Setup ====================================
-
+/*
 let onKeyDown = (e) => {
     if (e.keyCode === 83) { // 'S' key sends the coordinates to the backend.
         e.stopImmediatePropagation();
@@ -254,3 +254,18 @@ let onKeyDown = (e) => {
 
 // Add the event listener for key presses.
 document.addEventListener("keydown", onKeyDown);
+*/
+
+
+let onKeyDown = (e) => {
+    if (e.keyCode === 83) { // 'S' key for sending coordinates to the backend.s
+        e.stopPropagation();// Prevent the event from bubbling.
+        e.stopImmediatePropagation(); // Stop further propagation of the event.
+        e.preventDefault();// Prevent the default action for this key event.
+        sendCoordinatesToAPI();// Call your custom function.
+    }
+};
+
+// Add the event listener with `{ capture: true }` to capture the event earlier.
+document.addEventListener("keydown", onKeyDown, { capture: true });
+
